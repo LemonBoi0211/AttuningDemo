@@ -12,6 +12,13 @@ TagManager:
   - Deer
   - Horse
   - Tiger
+  - chickenRadius
+  - dogRadius
+  - penguinRadius
+  - catRadius
+  - deerRadius
+  - horseRadius
+  - tigerRadius
   layers:
   - Default
   - TransparentFX
@@ -19,7 +26,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - AttunementRadius
   - 
   - 
   - 

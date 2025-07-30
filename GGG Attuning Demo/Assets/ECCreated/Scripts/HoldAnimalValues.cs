@@ -22,20 +22,4 @@ public class HoldAnimalValues : MonoBehaviour
     [SerializeField] float horseStartle;
     [SerializeField] float tigerStartle;
 
-    AnimalAttuneLevels aal;
-
-    private void Update()
-    {
-        chickenLevel = aal.animalLevel;
-        dogLevel = aal.animalLevel;
-        penguinLevel = aal.animalLevel;
-        catLevel = aal.animalLevel;
-        deerLevel = aal.animalLevel;
-        horseLevel = aal.animalLevel;
-        tigerLevel = aal.animalLevel;
-    }
-
-
-
-
 }
