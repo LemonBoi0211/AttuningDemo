@@ -13,14 +13,14 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638893916190366991
-    m_Hash: 881767460
+      ticks: 638894723260575123
+    m_Hash: 271679567
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
   m_LocalFileStatus: []
 m_ProjectPath: D:/tiger/Main Stuff/GitHub/AttuningDemo/GGG Attuning Demo/Packages
-m_EditorVersion: 2022.3.61f1 (6c53ebaf375d)
+m_EditorVersion: 2022.3.62f1 (4af31df58517)
 m_ResolvedPackages:
 - packageId: com.unity.2d.sprite@1.0.0
   testable: 0
@@ -288,7 +288,7 @@ m_ResolvedPackages:
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
   - name: com.unity.ide.rider
-    version: 3.0.35
+    version: 3.0.36
   - name: com.unity.ide.vscode
     version: 1.2.5
   - name: com.unity.editorcoroutines
@@ -298,7 +298,7 @@ m_ResolvedPackages:
   - name: com.unity.testtools.codecoverage
     version: 1.2.6
   - name: com.unity.settings-manager
-    version: 2.0.1
+    version: 2.1.0
   keywords: []
   registry:
     id: main
@@ -3037,12 +3037,12 @@ m_ResolvedPackages:
   isDeprecated: 0
   deprecationMessage: 
   fingerprint: 
-- packageId: com.unity.ide.rider@3.0.35
+- packageId: com.unity.ide.rider@3.0.36
   testable: 0
   isDirectDependency: 0
-  version: 3.0.35
+  version: 3.0.36
   source: 1
-  resolvedPath: D:\tiger\Main Stuff\GitHub\AttuningDemo\GGG Attuning Demo\Library\PackageCache\com.unity.ide.rider@3.0.35
+  resolvedPath: D:\tiger\Main Stuff\GitHub\AttuningDemo\GGG Attuning Demo\Library\PackageCache\com.unity.ide.rider@3.0.36
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -3106,7 +3106,6 @@ m_ResolvedPackages:
     - 3.0.35
     - 3.0.36
     compatible:
-    - 3.0.35
     - 3.0.36
     recommended: 3.0.36
     deprecated: []
@@ -3127,16 +3126,16 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638779086412770000
+  datePublishedTicks: 638799562419060000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.rider@3.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.rider.git
-    revision: 52cd6800886cb6c849f5c908665829f1f8cca705
+    revision: b5315083ab3861d21f6ab2ed0d9514daf04bf208
     path: 
   unityLifecycle:
-    version: 3.0.35
+    version: 3.0.36
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -3568,7 +3567,7 @@ m_ResolvedPackages:
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
   - name: com.unity.settings-manager
-    version: 2.0.1
+    version: 2.1.0
   keywords:
   - test
   - coverage
@@ -3601,12 +3600,12 @@ m_ResolvedPackages:
   isDeprecated: 0
   deprecationMessage: 
   fingerprint: 
-- packageId: com.unity.settings-manager@2.0.1
+- packageId: com.unity.settings-manager@2.1.0
   testable: 0
   isDirectDependency: 0
-  version: 2.0.1
+  version: 2.1.0
   source: 1
-  resolvedPath: D:\tiger\Main Stuff\GitHub\AttuningDemo\GGG Attuning Demo\Library\PackageCache\com.unity.settings-manager@2.0.1
+  resolvedPath: D:\tiger\Main Stuff\GitHub\AttuningDemo\GGG Attuning Demo\Library\PackageCache\com.unity.settings-manager@2.1.0
   assetPath: Packages/com.unity.settings-manager
   name: com.unity.settings-manager
   displayName: Settings Manager
@@ -3615,7 +3614,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: 
   description: A framework for making any serializable field a setting, complete
     with a pre-built settings interface.
   status: 0
@@ -3632,9 +3631,8 @@ m_ResolvedPackages:
     - 2.0.1
     - 2.1.0
     compatible:
-    - 2.0.1
     - 2.1.0
-    recommended: 2.0.1
+    recommended: 2.1.0
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -3649,16 +3647,16 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637744099390000000
-  documentationUrl: 
+  datePublishedTicks: 638792046006940000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.settings-manager@2.1/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.com/Unity-Technologies/com.unity.settings-manager.git
-    revision: 9b7c12d04ef880168151c127fd6b37b5931197dc
+    revision: 6eb5ed85eaf3276cc09f0cc4fc3311c72f0fc196
     path: 
   unityLifecycle:
-    version: 2.0.1
+    version: 2.1.0
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -3738,4 +3736,4 @@ m_ResolvedPackages:
   isDeprecated: 0
   deprecationMessage: 
   fingerprint: 
-m_BuiltInPackagesHash: 06567ae48d438f50d30bd8446f6858cefee4de14
+m_BuiltInPackagesHash: 589add9c3ae0bc06545f5c61253b1928f3e64fad
