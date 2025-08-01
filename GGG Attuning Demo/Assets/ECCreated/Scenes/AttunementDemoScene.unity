@@ -134,9 +134,9 @@ GameObject:
   - component: {fileID: 102244869}
   - component: {fileID: 102244868}
   - component: {fileID: 102244867}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttuningRadius
-  m_TagString: AttunementRadius
+  m_TagString: catRadius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,9 +239,9 @@ GameObject:
   - component: {fileID: 259310387}
   - component: {fileID: 259310386}
   - component: {fileID: 259310385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttuningRadius
-  m_TagString: AttunementRadius
+  m_TagString: penguinRadius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -514,9 +514,9 @@ GameObject:
   - component: {fileID: 805381284}
   - component: {fileID: 805381283}
   - component: {fileID: 805381282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttuningRadius
-  m_TagString: AttunementRadius
+  m_TagString: chickenRadius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -781,7 +781,6 @@ GameObject:
   - component: {fileID: 873288390}
   - component: {fileID: 873288392}
   - component: {fileID: 873288391}
-  - component: {fileID: 873288393}
   m_Layer: 5
   m_Name: SkillCheckGame
   m_TagString: Untagged
@@ -849,26 +848,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873288389}
   m_CullTransparentMesh: 1
---- !u!114 &873288393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 873288389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 261c82803a3a9844391129caa5a1c5ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotatePointer: {fileID: 1651309006}
-  goodHitArea: {fileID: 750689589}
-  perfectHitArea: {fileID: 1471918763}
-  missHitArea: {fileID: 833257399}
-  rotatorRB: {fileID: 1651309010}
-  playerControls: {fileID: -944628639613478452, guid: 4bedb526cee5168499d6633ea1e116c1, type: 3}
-  isRotating: 1
-  attuned: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +934,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 10, z: -20}
+  m_LocalPosition: {x: 0, y: 7, z: -18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -973,9 +952,9 @@ GameObject:
   - component: {fileID: 998661245}
   - component: {fileID: 998661244}
   - component: {fileID: 998661243}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttuningRadius
-  m_TagString: AttunementRadius
+  m_TagString: tigerRadius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1162,7 +1141,6 @@ RectTransform:
   m_Children:
   - {fileID: 2099174122496806883}
   - {fileID: 873288390}
-  - {fileID: 1814292381}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1182,9 +1160,9 @@ GameObject:
   - component: {fileID: 1291762868}
   - component: {fileID: 1291762867}
   - component: {fileID: 1291762866}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttuningRadius
-  m_TagString: AttunementRadius
+  m_TagString: dogRadius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1428,7 +1406,7 @@ Transform:
   m_GameObject: {fileID: 1340402781}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -15}
+  m_LocalPosition: {x: 0.34, y: 1, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1449,6 +1427,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attuneMinigame: {fileID: 873288389}
   playerControls: {fileID: -944628639613478452, guid: 4bedb526cee5168499d6633ea1e116c1, type: 3}
+  gm: {fileID: 1413490186}
+  withinRadius: 0
+  inChickenRadius: 0
+  inDogRadius: 0
+  inPenguinRadius: 0
+  inCatRadius: 0
+  inDeerRadius: 0
+  inHorseRadius: 0
+  inTigerRadius: 0
 --- !u!1 &1353161723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,6 +1499,73 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1413490185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1413490187}
+  - component: {fileID: 1413490186}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1413490186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413490185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2672420e079729f4abb1cde5238a60df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minigame: {fileID: 873288389}
+  rotatePointer: {fileID: 1651309006}
+  goodHitArea: {fileID: 750689589}
+  perfectHitArea: {fileID: 1471918763}
+  missHitArea: {fileID: 833257399}
+  rotatorRB: {fileID: 1651309010}
+  playerControls: {fileID: -944628639613478452, guid: 4bedb526cee5168499d6633ea1e116c1, type: 3}
+  isRotating: 1
+  attuneComplete: 0
+  levelBar: {fileID: 2099174122496806882}
+  levelNumber: {fileID: 2099174122330337142}
+  playerAttuneLevel: 0
+  playerCurrentXP: 0
+  xpToNextLevel: 0
+  animalLevel: 0
+  pi: {fileID: 1340402788}
+  chickenAttuned: 0
+  dogAttuned: 0
+  penguinAttuned: 0
+  catAttuned: 0
+  deerAttuned: 0
+  horseAttuned: 0
+  tigerAttuned: 0
+--- !u!4 &1413490187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413490185}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1604,9 +1658,9 @@ GameObject:
   - component: {fileID: 1609799514}
   - component: {fileID: 1609799513}
   - component: {fileID: 1609799512}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttuningRadius
-  m_TagString: AttunementRadius
+  m_TagString: horseRadius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1812,9 +1866,9 @@ GameObject:
   - component: {fileID: 1741912609}
   - component: {fileID: 1741912608}
   - component: {fileID: 1741912607}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttuningRadius
-  m_TagString: AttunementRadius
+  m_TagString: deerRadius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1943,124 +1997,6 @@ Transform:
   - {fileID: 6552451253570820202}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1814292380
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1814292381}
-  - component: {fileID: 1814292382}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1814292381
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814292380}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1272913692}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1814292382
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814292380}
-  m_CullTransparentMesh: 1
---- !u!1 &2085499479
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2085499481}
-  - component: {fileID: 2085499480}
-  - component: {fileID: 2085499482}
-  m_Layer: 0
-  m_Name: AttunementManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2085499480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085499479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34cd8a07805bba74a87771dff0982904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelBar: {fileID: 2099174122496806882}
-  levelNumber: {fileID: 2099174122330337142}
-  animalLevel: 0
---- !u!4 &2085499481
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085499479}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2085499482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085499479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a3d77eadb513747aaf08c0473dc7d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chickenLevel: 0
-  dogLevel: 0
-  penguinLevel: 0
-  catLevel: 0
-  deerLevel: 0
-  horseLevel: 0
-  tigerLevel: 0
-  chickenStartle: 0
-  dogStartle: 0
-  penguinStartle: 0
-  catStartle: 0
-  deerStartle: 0
-  horseStartle: 0
-  tigerStartle: 0
 --- !u!1 &2132301355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,8 +2097,8 @@ Transform:
   m_GameObject: {fileID: 2132301355}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: -10.1886}
+  m_LocalScale: {x: 4, y: 4, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3541,7 +3477,6 @@ GameObject:
   - component: {fileID: 2197702747305228374}
   - component: {fileID: 2197702747305228373}
   - component: {fileID: 2197702747305228372}
-  - component: {fileID: 2197702747305228363}
   m_Layer: 0
   m_Name: Pinguin_001
   m_TagString: Penguin
@@ -4432,8 +4367,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527881004389720816}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 475.30176, y: 330.39764, z: -9.458099}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 480.79, y: 330.39764, z: -10.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4441,27 +4376,7 @@ Transform:
   - {fileID: 3744575382354393190}
   - {fileID: 259310384}
   m_Father: {fileID: 1783001000}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &2197702747305228363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527881004389720816}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c67ce836140b4479603ebcf944cddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_JumpButton: Jump
-  m_RunKey: 304
-  m_Camera: {fileID: 0}
-  m_MouseX: Mouse X
-  m_MouseY: Mouse Y
-  m_MouseScroll: Mouse ScrollWheel
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2197702747305228372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4731,7 +4646,7 @@ Transform:
   m_GameObject: {fileID: 5991924107347751826}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000000021598878, y: -9.668729e-10, z: 0.000000001146775}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4975,7 +4890,6 @@ GameObject:
   - component: {fileID: 120674174171560687}
   - component: {fileID: 9003410763349358444}
   - component: {fileID: 4203687712696513831}
-  - component: {fileID: 8592144787531486790}
   m_Layer: 0
   m_Name: Dog_001
   m_TagString: Dog
@@ -5424,7 +5338,7 @@ Transform:
   m_GameObject: {fileID: 1285473152290533219}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000000008043772, y: 7.5837836e-10, z: -0.000000003120895}
+  m_LocalPosition: {x: 0.45, y: 7.5837836e-10, z: -0.000000003120895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5662,8 +5576,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2629182450607220455}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 475.50174, y: 330.39764, z: -13.5981}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 476.19, y: 330.39764, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5671,7 +5585,7 @@ Transform:
   - {fileID: 3946947936488237478}
   - {fileID: 1291762865}
   m_Father: {fileID: 1783001000}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &3427573470362536643
 Transform:
   m_ObjectHideFlags: 0
@@ -6203,7 +6117,6 @@ GameObject:
   - component: {fileID: 3851015956659851000}
   - component: {fileID: 3851015956659851007}
   - component: {fileID: 3851015956659851006}
-  - component: {fileID: 3851015956659851005}
   m_Layer: 0
   m_Name: Horse_001
   m_TagString: Horse
@@ -6211,26 +6124,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3851015956659851005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3851015956659851004}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c67ce836140b4479603ebcf944cddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_JumpButton: Jump
-  m_RunKey: 304
-  m_Camera: {fileID: 0}
-  m_MouseX: Mouse X
-  m_MouseY: Mouse Y
-  m_MouseScroll: Mouse ScrollWheel
 --- !u!114 &3851015956659851006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7098,8 +6991,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3851015956659851004}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 475.59174, y: 330.39764, z: 6.4619007}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 495.88, y: 330.39764, z: -10.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7107,7 +7000,7 @@ Transform:
   - {fileID: 1064216674309200120}
   - {fileID: 1609799511}
   m_Father: {fileID: 1783001000}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4488644046619650158
 Transform:
   m_ObjectHideFlags: 0
@@ -8454,7 +8347,6 @@ GameObject:
   - component: {fileID: 5883155898151895772}
   - component: {fileID: 5883155898151895773}
   - component: {fileID: 5883155898151895762}
-  - component: {fileID: 5883155898151895763}
   m_Layer: 0
   m_Name: Tiger_001
   m_TagString: Tiger
@@ -8486,26 +8378,6 @@ MonoBehaviour:
     body: 0.3
     head: 0.7
     eyes: 1
---- !u!114 &5883155898151895763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5883155898151895760}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c67ce836140b4479603ebcf944cddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_JumpButton: Jump
-  m_RunKey: 304
-  m_Camera: {fileID: 0}
-  m_MouseX: Mouse X
-  m_MouseY: Mouse Y
-  m_MouseScroll: Mouse ScrollWheel
 --- !u!143 &5883155898151895772
 CharacterController:
   m_ObjectHideFlags: 0
@@ -8758,8 +8630,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6397291155003308809}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 475.63174, y: 330.39764, z: -4.9180994}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 485.67, y: 330.39764, z: -10.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8767,7 +8639,7 @@ Transform:
   - {fileID: 8791132947005968650}
   - {fileID: 102244866}
   m_Father: {fileID: 1783001000}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &6023088926241594936
 GameObject:
   m_ObjectHideFlags: 0
@@ -9098,7 +8970,6 @@ GameObject:
   - component: {fileID: 6397291155003308805}
   - component: {fileID: 6397291155003308804}
   - component: {fileID: 6397291155003308811}
-  - component: {fileID: 6397291155003308810}
   m_Layer: 0
   m_Name: Kitty_001
   m_TagString: Cat
@@ -9106,26 +8977,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6397291155003308810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6397291155003308809}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c67ce836140b4479603ebcf944cddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_JumpButton: Jump
-  m_RunKey: 304
-  m_Camera: {fileID: 0}
-  m_MouseX: Mouse X
-  m_MouseY: Mouse Y
-  m_MouseScroll: Mouse ScrollWheel
 --- !u!114 &6397291155003308811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9236,8 +9087,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5883155898151895760}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 475.69174, y: 330.67764, z: 10.7019005}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 501.11, y: 330.67764, z: -10.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9245,7 +9096,7 @@ Transform:
   - {fileID: 6876313854811741531}
   - {fileID: 998661242}
   m_Father: {fileID: 1783001000}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &6562851799507233171
 Transform:
   m_ObjectHideFlags: 0
@@ -10016,7 +9867,6 @@ GameObject:
   - component: {fileID: 7922649802152652015}
   - component: {fileID: 7922649802152652016}
   - component: {fileID: 7922649802152652017}
-  - component: {fileID: 7922649802152652014}
   m_Layer: 0
   m_Name: Deer_001
   m_TagString: Deer
@@ -10767,8 +10617,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7402009758838879830}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 476.25174, y: 330.39764, z: 0.68190074}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 490.37, y: 330.39764, z: -10.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10776,27 +10626,7 @@ Transform:
   - {fileID: 7501564087211749837}
   - {fileID: 1741912606}
   m_Father: {fileID: 1783001000}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &7922649802152652014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7402009758838879830}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c67ce836140b4479603ebcf944cddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_JumpButton: Jump
-  m_RunKey: 304
-  m_Camera: {fileID: 0}
-  m_MouseX: Mouse X
-  m_MouseY: Mouse Y
-  m_MouseScroll: Mouse ScrollWheel
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!143 &7922649802152652015
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11023,7 +10853,6 @@ GameObject:
   - component: {fileID: 8881504610615090951}
   - component: {fileID: 8881504610615090948}
   - component: {fileID: 8881504610615090949}
-  - component: {fileID: 8881504610615090970}
   m_Layer: 0
   m_Name: Chicken_001
   m_TagString: Chicken
@@ -11363,26 +11192,6 @@ Transform:
   - {fileID: 1507487337981060358}
   m_Father: {fileID: 6997057825684076876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8592144787531486790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2629182450607220455}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c67ce836140b4479603ebcf944cddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_JumpButton: Jump
-  m_RunKey: 304
-  m_Camera: {fileID: 0}
-  m_MouseX: Mouse X
-  m_MouseY: Mouse Y
-  m_MouseScroll: Mouse ScrollWheel
 --- !u!4 &8607764015699283686
 Transform:
   m_ObjectHideFlags: 0
@@ -11614,26 +11423,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.31, z: 0}
---- !u!114 &8881504610615090970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8073443194593117601}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c67ce836140b4479603ebcf944cddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_JumpButton: Jump
-  m_RunKey: 304
-  m_Camera: {fileID: 0}
-  m_MouseX: Mouse X
-  m_MouseY: Mouse Y
-  m_MouseScroll: Mouse ScrollWheel
 --- !u!4 &8881504610615090971
 Transform:
   m_ObjectHideFlags: 0
@@ -11642,8 +11431,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8073443194593117601}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 474.51193, y: 330.39764, z: -18.428099}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 471.27, y: 330.39764, z: -10.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11651,7 +11440,7 @@ Transform:
   - {fileID: 5260241464673324820}
   - {fileID: 805381281}
   m_Father: {fileID: 1783001000}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!137 &8897784207996036980
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -12010,4 +11799,4 @@ SceneRoots:
   - {fileID: 2132301359}
   - {fileID: 1783001000}
   - {fileID: 1340402787}
-  - {fileID: 2085499481}
+  - {fileID: 1413490187}
