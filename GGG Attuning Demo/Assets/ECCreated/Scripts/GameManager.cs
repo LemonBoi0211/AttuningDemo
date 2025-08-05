@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -7,28 +8,21 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     /// <summary>
-    /// Minigame enable, rotation scripting etc.
+    /// Minigame enable, player action
     /// </summary>
-
     [Header("Minigame Assets")]
     [SerializeField] private GameObject minigame;
-    [SerializeField] private GameObject rotatePointer;
-    [SerializeField] private GameObject goodHitArea;
-    [SerializeField] private GameObject perfectHitArea;
-    [SerializeField] private GameObject missHitArea;
-    [SerializeField] public Rigidbody rotatorRB;
     [SerializeField] InputActionAsset playerControls;
 
     [Header("Minigame Variables")]
     private InputAction actionAction;
-    private float anglesPerSecond = 90.0f;
-    public bool isRotating = true;
+    private RhythmGameControl rhythmControl;
     public bool attuneComplete = false;
+    bool clicked;
 
     /// <summary>
     /// Attunement levels and xp handling
     /// </summary>
-
     [Header("XP Bar Assets")]
     [SerializeField] Image levelBar;
     [SerializeField] Text levelNumber;
@@ -42,14 +36,12 @@ public class GameManager : MonoBehaviour
     float xpToFirstLevel;
 
     [Header("Animal Levels and Variables")]
-    
     [SerializeField] int animalLevel;
     float startleValue;
 
     /// <summary>
     /// Individual Animal Attunement Check Variables
     /// </summary>
-
     [Header("Animal Attunement Check Variables")]
     [SerializeField] PlayerInteract pi;
     [SerializeField] public bool chickenAttuned = false;
@@ -75,12 +67,7 @@ public class GameManager : MonoBehaviour
     {
         //minigame variables to set on start
         actionAction = playerControls.FindActionMap("Player").FindAction("Action");
-
-
-        //Randomly sets the rotation for the good/perfect hit areas
-        Vector3 ranRotation = goodHitArea.transform.eulerAngles;
-        ranRotation.z = Random.Range(0, 360);
-        goodHitArea.transform.eulerAngles = ranRotation;
+        rhythmControl = gameObject.GetComponent<RhythmGameControl>();
 
 
         //attune level variables to set on start
@@ -101,7 +88,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //minigame methods
-        OnStopSkillRotator();
+        MinigameChecker();
 
         //attune check methods
         AttunementStatus();
@@ -114,25 +101,16 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// this method is for rotating the pointer in the minigame but only if the minigame is active 
-    /// it then checks if the left mouse button has been clicked and will freeze stop the pointer 
-    /// from rotating. it then activates the above coroutine which just waits a second before 
-    /// setting the minigame to inactive again.
+    /// This method is to check whether the mingame is active in the hierarchy and will currently award xp and changes 
+    /// a bool before waiting a second and setting itself to inactive again.
     /// </summary>
-    void OnStopSkillRotator()
+    void MinigameChecker()
     {
-        if (minigame.activeInHierarchy && isRotating)
+        if (minigame.activeInHierarchy)
         {
-            //rotates the pointer constantly
-            Vector3 rotation = rotatorRB.transform.eulerAngles;
-            rotation.z -= Time.deltaTime * anglesPerSecond;
-            rotatorRB.transform.eulerAngles = rotation;
-
-            if (actionAction.triggered)
+            if (actionAction.triggered && !clicked)
             {
-                isRotating = false;
-                rotatorRB.freezeRotation = true;
-                playerCurrentXP += 50;
+                clicked = true;
                 attuneComplete = true;
                 StartCoroutine(ActiveObject());
             }
@@ -141,8 +119,19 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ActiveObject()
     {
-        yield return new WaitForSeconds(1f);
+        new WaitForSeconds(2f);
+        StopCoroutine(rhythmControl.IncrementBeat());
+        new WaitForSeconds(2f);
         minigame.SetActive(false);
+        new WaitForSeconds(2f);
+        MiscThings();
+        yield return clicked = false;
+    }
+
+    void MiscThings()
+    {
+        rhythmControl.beatCount = 0;
+        playerCurrentXP += 50;
     }
 
 

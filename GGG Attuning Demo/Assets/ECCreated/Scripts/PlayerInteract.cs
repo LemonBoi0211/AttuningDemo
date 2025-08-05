@@ -55,10 +55,8 @@ public class PlayerInteract : MonoBehaviour
         {
             if (!gm.attuneComplete)
             {
-                //sets the minigame to active and starts the pointer to start spinning
+                //sets the minigame to active
                 attuneMinigame.SetActive(true);
-                gm.isRotating = true;
-                gm.rotatorRB.freezeRotation = false;
             }
             else
             {

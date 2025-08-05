@@ -361,6 +361,7 @@
 "Assets/ECCreated/Scripts/HoldAnimalValues.cs"
 "Assets/ECCreated/Scripts/PlayerControl.cs"
 "Assets/ECCreated/Scripts/PlayerInteract.cs"
+"Assets/ECCreated/Scripts/RhythmGameControl.cs"
 "Assets/ithappy/Animals_FREE/Scripts/CreatureMover.cs"
 "Assets/ithappy/Animals_FREE/Scripts/MovePlayerInput.cs"
 "Assets/ithappy/Animals_FREE/Scripts/PlayerCamera.cs"
