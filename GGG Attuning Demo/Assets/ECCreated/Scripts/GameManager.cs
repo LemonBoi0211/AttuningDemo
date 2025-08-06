@@ -15,12 +15,17 @@ public class GameManager : MonoBehaviour
     [Header("Minigame Assets")]
     [SerializeField] private GameObject minigame;
     [SerializeField] InputActionAsset playerControls;
+    [SerializeField] Image hitCircle;
+    [SerializeField] Image targetZone;
+    CircleCollider2D hitCol;
 
     [Header("Minigame Variables")]
     private InputAction actionAction;
     private RhythmGameControl rhythmControl;
     public bool attuneComplete = false;
     public bool clicked;
+    public bool hitHit;
+    public bool overLap;
 
     /// <summary>
     /// Attunement levels and xp handling
@@ -31,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Levels and XP Variables")]
     [SerializeField] int playerAttuneLevel;
-    [SerializeField] float playerCurrentXP;
+    [SerializeField] public float playerCurrentXP;
     [SerializeField] float xpToNextLevel;
 
     float playerStartXP;
@@ -73,6 +78,7 @@ public class GameManager : MonoBehaviour
     {
         //minigame variables to set on start
         rhythmControl = gameObject.GetComponent<RhythmGameControl>();
+        hitCol = hitCircle.GetComponent<CircleCollider2D>();
 
         //attune level variables to set on start
         xpToFirstLevel = 100;
@@ -108,17 +114,31 @@ public class GameManager : MonoBehaviour
     {
         if (minigame.activeInHierarchy)
         {
-            if (context.action.triggered && !clicked)
+            if (hitCol.OverlapPoint(targetZone.transform.position))
+            {
+                overLap = true;
+            }
+            else { overLap = false; }
+
+            if (context.action.triggered && !clicked && overLap)
             {
                 clicked = true;
-                StopCoroutine(rhythmControl.HitMovement());
-                StopCoroutine(rhythmControl.IncrementBeat());
-                attuneComplete = true;
-                playerCurrentXP += 50;
-                rhythmControl.ResetValues();
+                hitHit = true;
+                overLap = false;
+                if (hitHit)
+                {
+                    StopCoroutine(rhythmControl.SpawnHitCircle());
+                    StopCoroutine(rhythmControl.IncrementBeat());
+                    rhythmControl.ResetValues();
+                    playerCurrentXP += 50;
+                    attuneComplete = true;
+                }
+                else { clicked = false; hitHit = false; }
             }
         }
     }
+
+
 
 
     /// <summary>
