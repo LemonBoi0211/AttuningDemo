@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class GameManager : MonoBehaviour
     private InputAction actionAction;
     private RhythmGameControl rhythmControl;
     public bool attuneComplete = false;
-    bool clicked;
+    public bool clicked;
 
     /// <summary>
     /// Attunement levels and xp handling
@@ -58,6 +60,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        actionAction = playerControls.FindActionMap("Player").FindAction("Action");
+
+        actionAction.performed += HandleAction;
+
         //sets players current xp and level to 0
         playerAttuneLevel = 0;
         playerCurrentXP = 0;
@@ -66,9 +72,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //minigame variables to set on start
-        actionAction = playerControls.FindActionMap("Player").FindAction("Action");
         rhythmControl = gameObject.GetComponent<RhythmGameControl>();
-
 
         //attune level variables to set on start
         xpToFirstLevel = 100;
@@ -87,51 +91,33 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //minigame methods
-        MinigameChecker();
-
         //attune check methods
         AttunementStatus();
 
         //attune level methods
         HandlePlayerLevels();
         HandleAnimalLevels();
-
     }
 
-
     /// <summary>
-    /// This method is to check whether the mingame is active in the hierarchy and will currently award xp and changes 
+    /// This method is to check whether the mingame is active in the hierarchy
+    /// and will currently award xp and changes 
     /// a bool before waiting a second and setting itself to inactive again.
     /// </summary>
-    void MinigameChecker()
+    public void HandleAction(InputAction.CallbackContext context)
     {
         if (minigame.activeInHierarchy)
         {
-            if (actionAction.triggered && !clicked)
+            if (context.action.triggered && !clicked)
             {
                 clicked = true;
+                StopCoroutine(rhythmControl.HitMovement());
+                StopCoroutine(rhythmControl.IncrementBeat());
                 attuneComplete = true;
-                StartCoroutine(ActiveObject());
+                playerCurrentXP += 50;
+                rhythmControl.ResetValues();
             }
         }
-    }
-
-    IEnumerator ActiveObject()
-    {
-        new WaitForSeconds(2f);
-        StopCoroutine(rhythmControl.IncrementBeat());
-        new WaitForSeconds(2f);
-        minigame.SetActive(false);
-        new WaitForSeconds(2f);
-        MiscThings();
-        yield return clicked = false;
-    }
-
-    void MiscThings()
-    {
-        rhythmControl.beatCount = 0;
-        playerCurrentXP += 50;
     }
 
 

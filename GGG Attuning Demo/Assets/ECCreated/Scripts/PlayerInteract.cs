@@ -9,7 +9,7 @@ public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] public GameObject attuneMinigame;
     [SerializeField] InputActionAsset playerControls;
-
+    
     private InputAction interactAction;
 
     public GameManager gm;
@@ -23,10 +23,12 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] public bool inHorseRadius;
     [SerializeField] public bool inTigerRadius;
 
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         interactAction = playerControls.FindActionMap("Player").FindAction("Interact");
+
+        interactAction.performed += HandleInteract;
     }
 
     private void OnEnable()
@@ -39,19 +41,14 @@ public class PlayerInteract : MonoBehaviour
         interactAction.Disable();
     }
 
-    private void Update()
-    {
-        HandleInteract();
-    }
-
     /// <summary>
     /// This Method allows the player to press 'e' and it will bring up the attuning minigame 
     /// however it only does it if they are within the attuning radius and if the animal 
     /// has not been already attuned too
     /// </summary>
-    void HandleInteract()
+    public void HandleInteract(InputAction.CallbackContext context)
     {
-        if (interactAction.triggered && withinRadius)
+        if (context.action.triggered && withinRadius)
         {
             if (!gm.attuneComplete)
             {

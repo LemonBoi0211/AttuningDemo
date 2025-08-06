@@ -4,6 +4,7 @@ using System.Threading;
 using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -49,6 +50,8 @@ public class PlayerControl : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
 
+
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -92,13 +95,15 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        //characterController.Move(moveDirection * Time.deltaTime);
+
         HandleMovement();
         HandleCrouching();
         HandleGravityAndJumping();
         HandleRotation();
     }
 
-    void HandleMovement()
+    public void HandleMovement()
     {
         float speedMultiplier = sprintAction.ReadValue<float>() > 0 ? sprintMultiplier : 1f;
 
@@ -122,7 +127,6 @@ public class PlayerControl : MonoBehaviour
     {
         if (crouchAction.triggered)
         {
-            
             if (!isCrouching)
             {
                 characterController.height = crouchHeight;
@@ -138,7 +142,6 @@ public class PlayerControl : MonoBehaviour
                 isCrouching = false;
             }
         }
-        
     }
 
     void HandleGravityAndJumping()
