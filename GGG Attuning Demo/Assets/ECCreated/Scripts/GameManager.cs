@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UI;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,17 +13,11 @@ public class GameManager : MonoBehaviour
     [Header("Minigame Assets")]
     [SerializeField] private GameObject minigame;
     [SerializeField] InputActionAsset playerControls;
-    [SerializeField] Image hitCircle;
-    [SerializeField] Image targetZone;
-    CircleCollider2D hitCol;
 
     [Header("Minigame Variables")]
     private InputAction actionAction;
     private RhythmGameControl rhythmControl;
     public bool attuneComplete = false;
-    public bool clicked;
-    public bool hitHit;
-    public bool overLap;
 
     /// <summary>
     /// Attunement levels and xp handling
@@ -41,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     float playerStartXP;
     float xpToFirstLevel;
+
+    private ScoreManager scoreManager;
 
     [Header("Animal Levels and Variables")]
     [SerializeField] int animalLevel;
@@ -78,21 +72,63 @@ public class GameManager : MonoBehaviour
     {
         //minigame variables to set on start
         rhythmControl = gameObject.GetComponent<RhythmGameControl>();
-        hitCol = hitCircle.GetComponent<CircleCollider2D>();
+
+        scoreManager = FindObjectOfType<ScoreManager>();
 
         //attune level variables to set on start
         xpToFirstLevel = 100;
         playerStartXP = 0;
+
+        UpdateLevelUI();
     }
 
     private void OnEnable()
     {
         actionAction.Enable();
+        RhythmGameControl.OnHitAccuracy += HandleHitAccuracyResult;
+        ScoreManager.OnGameWon += HandleGameWon;
     }
 
     private void OnDisable()
     {
         actionAction.Disable();
+        actionAction.performed -= HandleAction;
+        RhythmGameControl.OnHitAccuracy -= HandleHitAccuracyResult;
+        ScoreManager.OnGameWon -= HandleGameWon;
+    }
+    private void HandleHitAccuracyResult(RhythmGameControl.HitAccuracyType accuracy)
+    {
+        switch (accuracy)
+        {
+            case RhythmGameControl.HitAccuracyType.Perfect:
+                AwardXP(50); // Award more XP for perfect hit
+                Debug.Log("GameManager: Received Perfect Hit!");
+                attuneComplete = true; // Set attuneComplete here as this is a successful action
+                break;
+            case RhythmGameControl.HitAccuracyType.Good:
+                AwardXP(25); // Award less XP for good hit
+                Debug.Log("GameManager: Received Good Hit!");
+                attuneComplete = true; // Set attuneComplete here as this is a successful action
+                break;
+            case RhythmGameControl.HitAccuracyType.Miss:
+                // Optionally, penalize or provide feedback for a miss
+                Debug.Log("GameManager: Received Miss!");
+                break;
+        }
+    }
+
+    private void HandleGameWon()
+    {
+        Debug.Log("GameManager: Game Won! Stopping minigame.");
+        // Deactivate the minigame when the score is reached
+        // This will stop the beat incrementing coroutine in RhythmGameControl
+        minigame.SetActive(false);
+
+        // You might also want to:
+        // - Display a win screen or message
+        // - Load a new scene
+        // - Play a winning sound effect
+        // - Unlock new content (using attuneComplete, for example)
     }
 
     private void Update()
@@ -101,7 +137,7 @@ public class GameManager : MonoBehaviour
         AttunementStatus();
 
         //attune level methods
-        HandlePlayerLevels();
+        //HandlePlayerLevels();
         HandleAnimalLevels();
     }
 
@@ -114,31 +150,17 @@ public class GameManager : MonoBehaviour
     {
         if (minigame.activeInHierarchy)
         {
-            if (hitCol.OverlapPoint(targetZone.transform.position))
-            {
-                overLap = true;
-            }
-            else { overLap = false; }
-
-            if (context.action.triggered && !clicked && overLap)
-            {
-                clicked = true;
-                hitHit = true;
-                overLap = false;
-                if (hitHit)
-                {
-                    StopCoroutine(rhythmControl.SpawnHitCircle());
-                    StopCoroutine(rhythmControl.IncrementBeat());
-                    rhythmControl.ResetValues();
-                    playerCurrentXP += 50;
-                    attuneComplete = true;
-                }
-                else { clicked = false; hitHit = false; }
-            }
+            rhythmControl.HandleHitInput();
         }
     }
 
-
+    public void AwardXP(int xpAmount)
+    {
+        playerCurrentXP += xpAmount;
+        Debug.Log($"Awarded {xpAmount} XP. Current XP: {playerCurrentXP}");
+        HandlePlayerLevels(); // Check for level up after gaining XP
+        attuneComplete = true; // Set attuneComplete here as this is a successful action
+    }
 
 
     /// <summary>
@@ -148,21 +170,25 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void HandlePlayerLevels()
     {
-        xpToNextLevel = xpToFirstLevel;
+        xpToNextLevel = xpToFirstLevel + (playerAttuneLevel * 50);
 
-        float i = Mathf.InverseLerp(playerStartXP, xpToNextLevel, playerCurrentXP);
-        levelBar.fillAmount = i;
+        float fillAmount = Mathf.InverseLerp(playerStartXP, xpToNextLevel, playerCurrentXP);
+        levelBar.fillAmount = fillAmount;
 
-        if (i == 1)
+        if (playerCurrentXP >= xpToNextLevel)
         {
             levelBar.fillAmount = 0;
-            playerCurrentXP = 0;
-            xpToNextLevel = xpToFirstLevel += 50;
+            playerCurrentXP -= xpToNextLevel;
+            xpToNextLevel = xpToFirstLevel + ((playerAttuneLevel + 1) * 50);
             playerAttuneLevel++;
-            levelNumber.text = playerAttuneLevel.ToString();
+            UpdateLevelUI();
         }
     }
 
+    void UpdateLevelUI()
+    {
+        levelNumber.text = playerAttuneLevel.ToString();
+    }
 
     /// <summary>
     /// similarly to the player levels, this method will set and adjust the animal attune levels
@@ -178,6 +204,7 @@ public class GameManager : MonoBehaviour
         else if (playerAttuneLevel >= 2)
         {
             animalLevel = playerAttuneLevel + Random.Range(-2, 2);
+            if(animalLevel < 1) animalLevel = 1;
         }
     }
 
@@ -189,45 +216,53 @@ public class GameManager : MonoBehaviour
     {
         if (attuneComplete)
         {
-            if (pi.inChickenRadius && !chickenAttuned)
+            bool attunedThisFrame = false;
+            if(pi != null)
             {
-                chickenAttuned = true;
-                attuneComplete = false;
-            }
+                if (pi.inChickenRadius && !chickenAttuned)
+                {
+                    chickenAttuned = true;
+                    attuneComplete = false;
+                }
 
-            if (pi.inDogRadius && !dogAttuned)
-            {
-                dogAttuned = true;
-                attuneComplete = false;
-            }
+                else if (pi.inDogRadius && !dogAttuned)
+                {
+                    dogAttuned = true;
+                    attuneComplete = false;
+                }
 
-            if (pi.inPenguinRadius && !penguinAttuned)
-            {
-                penguinAttuned = true;
-                attuneComplete = false;
-            }
+                else if (pi.inPenguinRadius && !penguinAttuned)
+                {
+                    penguinAttuned = true;
+                    attuneComplete = false;
+                }
 
-            if (pi.inCatRadius && !catAttuned)
-            {
-                catAttuned = true;
-                attuneComplete = false;
-            }
+                else if (pi.inCatRadius && !catAttuned)
+                {
+                    catAttuned = true;
+                    attuneComplete = false;
+                }
 
-            if (pi.inDeerRadius && !deerAttuned)
-            {
-                deerAttuned = true;
-                attuneComplete = false;
-            }
+                else if (pi.inDeerRadius && !deerAttuned)
+                {
+                    deerAttuned = true;
+                    attuneComplete = false;
+                }
 
-            if (pi.inHorseRadius && !horseAttuned)
-            {
-                horseAttuned = true;
-                attuneComplete = false;
-            }
+                else if (pi.inHorseRadius && !horseAttuned)
+                {
+                    horseAttuned = true;
+                    attuneComplete = false;
+                }
 
-            if (pi.inTigerRadius && !tigerAttuned)
+                else if (pi.inTigerRadius && !tigerAttuned)
+                {
+                    tigerAttuned = true;
+                    attuneComplete = false;
+                }
+            }
+            if (attunedThisFrame)
             {
-                tigerAttuned = true;
                 attuneComplete = false;
             }
         }
